@@ -1,0 +1,11 @@
+name: RuralMC
+main: com.ruralmc.plugin.RuralMC
+version: 1.12.1.3-DEV
+author: Chaka
+commands:
+  rmc:
+    description: This is the main RMC command.
+    usage: /<command>
+  claim:
+    description: Claim a chunk
+    usage: /<command>
