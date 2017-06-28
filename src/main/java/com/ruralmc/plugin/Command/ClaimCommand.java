@@ -1,5 +1,6 @@
 package com.ruralmc.plugin.Command;
 
+import com.ruralmc.plugin.Libraries.Config;
 import com.ruralmc.plugin.Libraries.Messages;
 import com.ruralmc.plugin.Libraries.Permissions;
 import com.ruralmc.plugin.RuralMC;
@@ -32,6 +33,9 @@ public class ClaimCommand implements CommandExecutor {
 
                 player.performCommand("/chunk");
                 player.performCommand("rg claim " + uuid.toString());
+
+                Config.getClaims().createSection(player.getName() + ".claims");
+                Config.getClaims().addDefault(player.getName() + ".claims", uuid.toString());
 
                 this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "ecoadmin take " + player.getName() + "1");
 

@@ -2,6 +2,7 @@ package com.ruralmc.plugin;
 
 import com.ruralmc.plugin.Command.ClaimCommand;
 import com.ruralmc.plugin.Command.RMCCommand;
+import com.ruralmc.plugin.Libraries.Config;
 import com.ruralmc.plugin.Libraries.Permissions;
 import com.ruralmc.plugin.Libraries.SQL.MySQL;
 import org.bukkit.plugin.PluginManager;
@@ -19,6 +20,9 @@ public class RuralMC extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        new Config(this);
+        Config.createAllFiles();
 
         Permissions.init(this.pm);
 
@@ -42,6 +46,8 @@ public class RuralMC extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
+        Config.saveAllFiles();
 
         this.getLogger().log(Level.INFO, "Disabled");
     }
