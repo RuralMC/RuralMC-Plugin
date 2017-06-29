@@ -37,9 +37,7 @@ public class ClaimCommand implements CommandExecutor {
                 player.performCommand("/chunk");
                 player.performCommand("rg claim " + uuid.toString());
 
-                Config.getClaims().createSection(player.getUniqueId() + ".claims");
-                Config.getClaims().set(player.getUniqueId() + ".name", player.getName());
-                Config.getClaims().set(player.getUniqueId() + ".claims." + uuid + ".time", System.currentTimeMillis());
+                Config.getClaims().createSection(player.getUniqueId() + ".claims." + uuid);
 
                 Config.saveClaimsFile();
 
