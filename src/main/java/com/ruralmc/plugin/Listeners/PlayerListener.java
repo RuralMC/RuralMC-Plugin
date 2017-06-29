@@ -29,6 +29,7 @@ public class PlayerListener implements Listener {
             Config.getClaims().createSection(player.getUniqueId() + ".name");
             Config.getClaims().set(player.getUniqueId() + ".name", player.getName());
             this.plugin.getServer().getLogger().log(Level.INFO, "New player detected, creating claims section for player: " + player.getName());
+            Config.saveClaimsFile();
         }
     }
 }

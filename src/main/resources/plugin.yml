@@ -1,6 +1,6 @@
 name: RuralMC
 main: com.ruralmc.plugin.RuralMC
-version: 1.12.1.15-DEV
+version: 1.12.1.16-DEV
 author: Chaka
 commands:
   rmc:
