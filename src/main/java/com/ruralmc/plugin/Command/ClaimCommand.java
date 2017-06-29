@@ -9,6 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class ClaimCommand implements CommandExecutor {
@@ -34,8 +36,12 @@ public class ClaimCommand implements CommandExecutor {
                 player.performCommand("/chunk");
                 player.performCommand("rg claim " + uuid.toString());
 
-                Config.getClaims().createSection(player.getName() + ".claims");
-                Config.getClaims().addDefault(player.getName() + ".claims", uuid.toString());
+                Config.getClaims().createSection(player.getUniqueId() + ".claims");
+                Config.getClaims().set(player.getUniqueId() + ".name", player.getName());
+                List<String> values = new ArrayList<String>();
+                values.add(uuid.toString());
+                Config.getClaims().set(player.getUniqueId() + ".claims", values);
+                Config.saveClaimsFile();
 
                 this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "ecoadmin take " + player.getName() + "1");
 
