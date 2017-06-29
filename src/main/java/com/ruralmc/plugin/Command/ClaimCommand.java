@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 import java.util.UUID;
 
 public class ClaimCommand implements CommandExecutor {
@@ -38,11 +39,7 @@ public class ClaimCommand implements CommandExecutor {
 
                 Config.getClaims().createSection(player.getUniqueId() + ".claims");
                 Config.getClaims().set(player.getUniqueId() + ".name", player.getName());
-
-                List<String> claims = new ArrayList<String>();
-                claims = (List<String>) Config.getClaims().getList(player.getUniqueId() + ".claims");
-                claims.add(uuid.toString());
-                Config.getClaims().set(player.getUniqueId() + ".claims", claims);
+                Config.getClaims().set(player.getUniqueId() + ".claims." + uuid + ".time", System.currentTimeMillis());
 
                 Config.saveClaimsFile();
 

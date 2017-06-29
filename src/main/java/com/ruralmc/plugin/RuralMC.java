@@ -15,8 +15,8 @@ import java.util.logging.Level;
 public class RuralMC extends JavaPlugin {
 
     private PluginManager pm = this.getServer().getPluginManager();
-    MySQL sql = new MySQL("host.name", "port", "database", "user", "pass");
-    Connection con = null;
+    //MySQL sql = new MySQL("host.name", "port", "database", "user", "pass");
+    //Connection con = null;
 
     @Override
     public void onEnable() {
@@ -26,7 +26,7 @@ public class RuralMC extends JavaPlugin {
 
         Permissions.init(this.pm);
 
-        try {
+        /*try {
             con = sql.openConnection();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class RuralMC extends JavaPlugin {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             this.getLogger().log(Level.SEVERE, "ERROR: ClassNotFoundException - RuralMC.onEnable.openConnection");
-        }
+        }*/
 
         this.getCommand("rmc").setExecutor(new RMCCommand(this));
         this.getCommand("claim").setExecutor(new ClaimCommand(this));
