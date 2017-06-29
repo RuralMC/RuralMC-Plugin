@@ -25,10 +25,18 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
 
         if (!(player.hasPlayedBefore())) {
+            this.plugin.getServer().getLogger().log(Level.INFO, "New player detected, creating claims section for player: " + player.getName());
+
             Config.getClaims().createSection(player.getUniqueId() + ".claims");
+
             Config.getClaims().createSection(player.getUniqueId() + ".name");
             Config.getClaims().set(player.getUniqueId() + ".name", player.getName());
-            this.plugin.getServer().getLogger().log(Level.INFO, "New player detected, creating claims section for player: " + player.getName());
+
+            Config.getClaims().createSection(player.getUniqueId() + ".number");
+            Config.getClaims().set(player.getUniqueId() + ".number", 0);
+
+
+
             Config.saveClaimsFile();
         }
     }

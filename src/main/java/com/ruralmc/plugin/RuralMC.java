@@ -17,6 +17,8 @@ public class RuralMC extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        this.saveDefaultConfig();
+
         new Config(this);
         Config.createAllFiles();
 
