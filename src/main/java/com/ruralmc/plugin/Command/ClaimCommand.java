@@ -38,12 +38,12 @@ public class ClaimCommand implements CommandExecutor {
 
                 Config.getClaims().createSection(player.getUniqueId() + ".claims");
                 Config.getClaims().set(player.getUniqueId() + ".name", player.getName());
-                List<String> values = (List<String>) Config.getClaims().getList(player.getUniqueId() + ".claims");
+                List values = Config.getClaims().getList(player.getUniqueId() + ".claims");
                 values.add(uuid.toString());
                 Config.getClaims().set(player.getUniqueId() + ".claims", values);
                 Config.saveClaimsFile();
 
-                this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "ecoadmin take " + player.getName() + " 1");
+                //this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "ecoadmin take " + player.getName() + " 1");
 
                 player.sendMessage(Messages.REGION_CLAIMED);
             } else {
