@@ -1,6 +1,6 @@
 name: RuralMC
 main: com.ruralmc.plugin.RuralMC
-version: 1.12.1.21-DEV
+version: 1.12.1.26-DEV
 author: Chaka
 commands:
   rmc:
@@ -8,4 +8,7 @@ commands:
     usage: /<command>
   claim:
     description: Claim a chunk
+    usage: /<command>
+  points:
+    description: Points things
     usage: /<command>

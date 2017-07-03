@@ -11,4 +11,6 @@ public class Permissions {
 
     public static Permission CMD_RMC = new Permission("rmc.cmd.rmc");
     public static Permission CMD_CLAIM = new Permission("rmc.cmd.claim");
+    public static Permission CMD_POINTS = new Permission("rmc.cmd.points");
+    public static Permission CMD_POINTS_ADMIN = new Permission("rmc.cmd.points.admin");
 }

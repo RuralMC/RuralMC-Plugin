@@ -1,21 +1,2 @@
 landClaimPrice: 1.0
-
-minY: 33
-maxY: 129
-
-
-##############
-#Claim Limits#
-##############
-claimLimits:
-  travelerLimit: 6
-  citizenLimit: 30
-
-
-##########
-#LAND TAX#
-##########
-landtax:
-  enabled: false
-  tax: 7.5
-  time: 100000
+defaultPoints: 10

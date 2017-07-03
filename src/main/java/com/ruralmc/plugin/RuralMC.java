@@ -1,6 +1,7 @@
 package com.ruralmc.plugin;
 
 import com.ruralmc.plugin.Command.ClaimCommand;
+import com.ruralmc.plugin.Command.PointsCommand;
 import com.ruralmc.plugin.Command.RMCCommand;
 import com.ruralmc.plugin.Libraries.Config;
 import com.ruralmc.plugin.Libraries.Permissions;
@@ -28,6 +29,7 @@ public class RuralMC extends JavaPlugin {
 
         this.getCommand("rmc").setExecutor(new RMCCommand(this));
         this.getCommand("claim").setExecutor(new ClaimCommand(this));
+        this.getCommand("points").setExecutor(new PointsCommand(this));
 
         this.saveDefaultConfig();
 

@@ -36,8 +36,8 @@ public class ClaimCommand implements CommandExecutor {
 
                 player.performCommand("/chunk");
                 player.performCommand("rg claim " + uuid.toString());
-                String chunk = player.getLocation().getChunk().toString();
-                player.sendMessage(chunk);
+                /*String chunk = player.getLocation().getChunk().toString();
+                player.sendMessage(chunk);*/
 
                 List<String> claims = Config.getClaims().getStringList(player.getUniqueId() + ".claims");
                 claims.add(uuid.toString());
@@ -49,7 +49,7 @@ public class ClaimCommand implements CommandExecutor {
 
                 Config.saveClaimsFile();
 
-                this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "ecoadmin take " + player.getName() + Config.getConfig().getString("landClaimPrice"));
+                this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "money take " + player.getName() + Config.getConfig().getString("landClaimPrice"));
 
                 player.sendMessage(Messages.REGION_CLAIMED);
             } else {

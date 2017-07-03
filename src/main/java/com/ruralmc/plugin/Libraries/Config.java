@@ -16,9 +16,11 @@ public class Config {
 
     private static File configFile;
     private static File claimsFile;
+    private static File pointsFile;
 
     private static FileConfiguration config;
     private static FileConfiguration claims;
+    private static FileConfiguration points;
 
     public Config(RuralMC plugin) {
         this.plugin = plugin;
@@ -27,9 +29,11 @@ public class Config {
 
         this.configFile = new File(plugin.getDataFolder(), "config.yml");
         this.claimsFile = new File(plugin.getDataFolder(), "claims.yml");
+        this.pointsFile = new File(plugin.getDataFolder(), "points.yml");
 
         this.config = YamlConfiguration.loadConfiguration(configFile);
         this.claims = YamlConfiguration.loadConfiguration(claimsFile);
+        this.points = YamlConfiguration.loadConfiguration(pointsFile);
     }
 
     public static void createAllFiles() {
@@ -43,6 +47,11 @@ public class Config {
             plugin.saveResource("claims.yml", true);
             plugin.getLogger().log(Level.INFO, "Successfully created claims.yml");
         }
+        if (!(pointsFile.exists())) {
+            plugin.getLogger().log(Level.INFO, "points.yml not found, Creating new one.");
+            plugin.saveResource("points.yml", true);
+            plugin.getLogger().log(Level.INFO, "Successfully created points.yml");
+        }
     }
 
     public static File getConfigFile() {
@@ -53,12 +62,20 @@ public class Config {
         return claimsFile;
     }
 
+    public static File getPointsFile() {
+        return pointsFile;
+    }
+
     public static FileConfiguration getConfig() {
         return config;
     }
 
     public static FileConfiguration getClaims() {
         return claims;
+    }
+
+    public static FileConfiguration getPoints() {
+        return points;
     }
 
     public static FileConfiguration getFileConfig(File file) {
@@ -73,9 +90,14 @@ public class Config {
         saveFile(claimsFile, claims);
     }
 
+    public static void savePointsFile() {
+        saveFile(pointsFile, points);
+    }
+
     public static void saveAllFiles() {
         saveFile(configFile, config);
         saveFile(claimsFile, claims);
+        saveFile(pointsFile, points);
     }
 
     public static void saveFile(File file, FileConfiguration config) {
