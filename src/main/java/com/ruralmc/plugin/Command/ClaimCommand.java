@@ -4,6 +4,7 @@ import com.ruralmc.plugin.Libraries.Config;
 import com.ruralmc.plugin.Libraries.Messages;
 import com.ruralmc.plugin.Libraries.Permissions;
 import com.ruralmc.plugin.RuralMC;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -34,28 +35,37 @@ public class ClaimCommand implements CommandExecutor {
                 Player player = (Player) src;
                 UUID uuid = UUID.randomUUID();
 
-                player.performCommand("/chunk");
-                player.performCommand("rg claim " + uuid.toString());
+                if (Config.getPoints().getInt(player.getUniqueId() + ".points") > 1) {
+                    player.performCommand("/chunk");
+                    player.performCommand("rg claim " + uuid.toString());
                 /*String chunk = player.getLocation().getChunk().toString();
                 player.sendMessage(chunk);*/
 
-                List<String> claims = Config.getClaims().getStringList(player.getUniqueId() + ".claims");
-                claims.add(uuid.toString());
-                Config.getClaims().set(player.getUniqueId() + ".claims", claims);
+                    List<String> claims = Config.getClaims().getStringList(player.getUniqueId() + ".claims");
+                    claims.add(uuid.toString());
+                    Config.getClaims().set(player.getUniqueId() + ".claims", claims);
 
-                int numclaims = Config.getClaims().getInt(player.getUniqueId() + ".number");
-                numclaims++;
-                Config.getClaims().set(player.getUniqueId() + ".number", numclaims);
+                    int numclaims = Config.getClaims().getInt(player.getUniqueId() + ".number");
+                    numclaims++;
+                    Config.getClaims().set(player.getUniqueId() + ".number", numclaims);
 
-                Config.saveClaimsFile();
+                    Config.saveClaimsFile();
 
-                this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "money take " + player.getName() + Config.getConfig().getString("landClaimPrice"));
+                    int points = Config.getPoints().getInt(player.getUniqueId() + ".points");
+                    points--;
+                    Config.getPoints().set(player.getUniqueId() + ".points", points);
+                    Config.savePointsFile();
 
-                player.sendMessage(Messages.REGION_CLAIMED);
+                    player.sendMessage(Messages.REGION_CLAIMED);
+                    return true;
+                } else {
+                    src.sendMessage(Messages.CHAT_PREFIX + ChatColor.RED + "You do not have enough points to claim this chunk.");
+                    return true;
+                }
             } else {
                 src.sendMessage(Messages.NO_PERMS);
+                return true;
             }
-            return true;
         }
         return false;
     }
