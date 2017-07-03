@@ -13,4 +13,11 @@ public class Permissions {
     public static Permission CMD_CLAIM = new Permission("rmc.cmd.claim");
     public static Permission CMD_POINTS = new Permission("rmc.cmd.points");
     public static Permission CMD_POINTS_ADMIN = new Permission("rmc.cmd.points.admin");
+
+    //TODO implement this, it'll make things easier
+    public static Permission GROUP_NOMAD = new Permission("rmc.nomad");
+    public static Permission GROUP_CITIZEN = new Permission("rmc.citizen");
+    public static Permission GROUP_PIONEER = new Permission("rmc.pioneer");
+    public static Permission GROUP_STAFF = new Permission("rmc.staff");
+    public static Permission GROUP_ADMIN = new Permission("rmc.admin");
 }

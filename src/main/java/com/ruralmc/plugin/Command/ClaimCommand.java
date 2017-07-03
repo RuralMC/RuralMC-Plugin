@@ -1,5 +1,6 @@
 package com.ruralmc.plugin.Command;
 
+import com.ruralmc.plugin.Libraries.CfgValues;
 import com.ruralmc.plugin.Libraries.Config;
 import com.ruralmc.plugin.Libraries.Messages;
 import com.ruralmc.plugin.Libraries.Permissions;
@@ -32,11 +33,13 @@ public class ClaimCommand implements CommandExecutor {
                 return true;
             }
             if (src.hasPermission(Permissions.CMD_CLAIM)) {
-                Player player = (Player) src;
-                UUID uuid = UUID.randomUUID();
+                final Player player = (Player) src;
+                final UUID uuid = UUID.randomUUID();
 
                 if (Config.getPoints().getInt(player.getUniqueId() + ".points") > 1) {
                     player.performCommand("/chunk");
+                    player.performCommand("/contract 32 up");
+                    player.performCommand("/contract 127 down");
                     player.performCommand("rg claim " + uuid.toString());
                 /*String chunk = player.getLocation().getChunk().toString();
                 player.sendMessage(chunk);*/
@@ -52,9 +55,17 @@ public class ClaimCommand implements CommandExecutor {
                     Config.saveClaimsFile();
 
                     int points = Config.getPoints().getInt(player.getUniqueId() + ".points");
-                    points--;
+                    int price = CfgValues.landClaimPrice;
+                    points = points - price;
                     Config.getPoints().set(player.getUniqueId() + ".points", points);
                     Config.savePointsFile();
+
+                    this.plugin.getServer().getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable() {
+                        public void run() {
+                            plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "rg flag " + uuid + " greeting -w world `gEntering " + player.getName() + "'s claim.");
+                            plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "rg flag " + uuid + " farewell -w world `rLeaving " + player.getName() + "'s claim.");
+                        }
+                    }, 20L);
 
                     player.sendMessage(Messages.REGION_CLAIMED);
                     return true;

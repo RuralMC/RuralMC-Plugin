@@ -1,6 +1,6 @@
 name: RuralMC
 main: com.ruralmc.plugin.RuralMC
-version: 1.12.1.31-DEV
+version: 1.12.1.46-DEV
 author: Chaka
 commands:
   rmc:
@@ -12,3 +12,9 @@ commands:
   points:
     description: Points things
     usage: /<command>
+  addpoints:
+    description: Points things
+  removepoints:
+    description: Points things
+  setpoints:
+    description: Points things

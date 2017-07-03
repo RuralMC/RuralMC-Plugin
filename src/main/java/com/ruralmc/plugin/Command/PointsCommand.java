@@ -30,11 +30,12 @@ public class PointsCommand implements CommandExecutor {
                 if (length == 0) {
                     //Players number of points
                     src.sendMessage(Messages.CHAT_PREFIX + "You currently have: " + ChatColor.GOLD + Config.getPoints().getString(player.getUniqueId() + ".points") + ChatColor.GREEN + " Points");
-                }
+                    return true;
+                } //todo invalid
             } else {
                 src.sendMessage(Messages.NO_PERMS);
+                return true;
             }
-            return true;
         }
         return false;
     }
