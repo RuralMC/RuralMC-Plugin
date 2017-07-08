@@ -31,7 +31,7 @@ public class RemovePointsCommand implements CommandExecutor {
 
                     int points = Config.getPoints().getInt(player.getUniqueId() + ".points");
                     points = points - Integer.valueOf(args[1]);
-                    Config.getPoints().set(player.getUniqueId() + ".points", points);
+                    Config.getPoints().set(player.getUniqueId() + ".points", Integer.valueOf(points));
                     Config.savePointsFile();
                     src.sendMessage(Messages.CHAT_PREFIX + "Points removed from user.");
                     player.sendMessage(Messages.CHAT_PREFIX + ChatColor.GOLD + args[1] + ChatColor.GREEN + " points have been removed from your account.");

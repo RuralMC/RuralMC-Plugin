@@ -1,17 +1,15 @@
 name: RuralMC
 main: com.ruralmc.plugin.RuralMC
-version: 1.12.1.46-DEV
+version: 1.12.1.51-DEV
 author: Chaka
+depend: [WorldGuard]
 commands:
   rmc:
     description: This is the main RMC command.
-    usage: /<command>
   claim:
     description: Claim a chunk
-    usage: /<command>
   points:
     description: Points things
-    usage: /<command>
   addpoints:
     description: Points things
   removepoints:

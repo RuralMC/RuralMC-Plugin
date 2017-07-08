@@ -29,7 +29,7 @@ public class SetPointsCommand implements CommandExecutor {
                 if (src.hasPermission(Permissions.GROUP_STAFF)) {
                     Player player = this.plugin.getServer().getPlayer(UUID.fromString(args[0]));
 
-                    Config.getPoints().set(player.getUniqueId() + ".points", args[1]);
+                    Config.getPoints().set(player.getUniqueId() + ".points", Integer.valueOf(args[1]));
                     Config.savePointsFile();
                     src.sendMessage(Messages.CHAT_PREFIX + "User's points set to: " + ChatColor.GOLD + args[1]);
                     player.sendMessage(Messages.CHAT_PREFIX + ChatColor.GREEN + " Your points have been set to: " + ChatColor.GOLD + args[1]);
