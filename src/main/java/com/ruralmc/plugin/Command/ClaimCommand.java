@@ -99,6 +99,31 @@ public class ClaimCommand implements CommandExecutor {
                     Config.savePointsFile();
                     //END POINTS
 
+                    //START DYNMAP
+                    int y = 265;
+
+                    maxX = maxX + 1;
+                    maxZ = maxZ + 1;
+
+                    int c1X = minX;
+                    int c1Z = minZ;
+
+                    int c2x = minX;
+                    int c2Z = minZ + 16;
+
+                    int c4X = maxX;
+                    int c4Z = maxZ - 16;
+
+                    int c3X = maxX;
+                    int c3Z = maxZ;
+
+                    this.plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "dmarker addcorner " + c1X + " " + y + " " + c1Z + " world");
+                    this.plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "dmarker addcorner " + c2x + " " + y + " " + c2Z + " world");
+                    this.plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "dmarker addcorner " + c3X + " " + y + " " + c3Z + " world");
+                    this.plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "dmarker addcorner " + c4X + " " + y + " " + c4Z + " world");
+                    this.plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "dmarker addarea id:" + uuid + " \"" + player.getName() + " (" + uuid + ")\"");
+                    //END DYNMAP
+
                     player.sendMessage(Messages.REGION_CLAIMED);
                     this.plugin.getServer().getConsoleSender().sendMessage(Messages.CHAT_PREFIX + ChatColor.GOLD + player.getName() + ChatColor.GREEN + " created a new claim: " + ChatColor.GOLD + uuid + ChatColor.GREEN + " at: " + ChatColor.AQUA + minX + ", " + minZ + " : " + maxX + ", " + maxZ);
                     return true;

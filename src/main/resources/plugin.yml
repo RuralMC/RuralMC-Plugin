@@ -1,6 +1,6 @@
 name: RuralMC
 main: com.ruralmc.plugin.RuralMC
-version: 1.12.1.51-DEV
+version: 1.12.1.61-RELEASE
 author: Chaka
 depend: [WorldGuard]
 commands:
